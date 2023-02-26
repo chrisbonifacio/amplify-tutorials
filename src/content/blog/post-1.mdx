@@ -1,0 +1,18 @@
+---
+title: Post 1
+description: This is a post
+draft: false
+date: 2023-02-25
+tags: [tech, react]
+author: "Chris Bonifacio"
+---
+
+import SvelteCounter from "../../components/SvelteCounter.svelte";
+import ReactCounter from "../../components/ReactCounter.jsx";
+
+# Post 1
+
+By: {frontmatter.author}
+
+<SvelteCounter client:load />
+<ReactCounter client:load />

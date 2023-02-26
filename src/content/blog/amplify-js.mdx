@@ -1,0 +1,24 @@
+---
+title: Amplify JS
+description: This is a post about AWS Amplify + Astro
+draft: false
+date: 2023-02-25
+tags: [amplify, js, react]
+author: "Chris Bonifacio"
+---
+
+# Getting Started with Amplify JS + Astro
+
+```jsx
+import React from 'react';
+import {Amplify} from 'aws-amplify';
+import awsconfig from './aws-exports';
+
+Amplify.configure(awsconfig);
+
+const App = () => {
+  return <div>Hello World</div>;
+};
+
+export default App;
+```

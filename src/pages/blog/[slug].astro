@@ -1,0 +1,41 @@
+---
+import { CollectionEntry, getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  const postsWithAuthor = await Promise.all(
+    posts.map(async (post) => {
+      const [author] = await getCollection("authors", ({ data }) => {
+        return post.data.author === data.name;
+      });
+
+      return {
+        params: {
+          slug: post.slug,
+        },
+        props: {
+          post,
+          author,
+        },
+      };
+    })
+  );
+
+  return postsWithAuthor;
+}
+
+interface Props {
+  post: CollectionEntry<"blog">;
+  author: CollectionEntry<"authors">;
+}
+
+const { post, author } = Astro.props;
+
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title}>
+  <Content set:html="<p>test</p>" />
+</Layout>

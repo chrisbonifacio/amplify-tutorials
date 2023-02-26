@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Card from "../../components/Card.astro";
+import AmplifyAuthenticator from "../../components/AmplifyAuthenticator.astro";
+const blogPosts = await getCollection("authors");
+---
+
+<AmplifyAuthenticator>
+  <Layout title="Amplify Tutorials">
+    <h1 class="text-4xl text-left">
+      Welcome to <span class="text-gradient">Amplify Tutorials</span>
+    </h1>
+    <br />
+    <h2 class="text-3xl font-bold mb-3">Blog</h2>
+    {
+      blogPosts.map((p) => {
+        return (
+          <Card
+            title={p.data.name}
+            body={p.data.role}
+            href={`/authors/${p.slug}/`}
+          />
+        );
+      })
+    }
+  </Layout>
+</AmplifyAuthenticator>
+
+<style>
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+</style>
