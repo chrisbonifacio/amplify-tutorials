@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import Card from "../../components/Card.astro";
-import AmplifyAuthenticator from "../../components/AmplifyAuthenticator.astro";
+import AmplifyAuthenticator from "../../components/AmplifyAuthenticator";
 const blogPosts = await getCollection("authors");
 ---
 
